@@ -2,45 +2,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//global variables
+char win = 'w';
+char lose = 'l';
+
 // game function
 char r_p_c(int player, int computer){
-    char result;
     if(player == 'r' &&  computer == 's' ){
-        char *result = "\n you won";
-        return *result;
+        return win;
     }
+
     if(player == 'r' &&  computer == 'p' ){
-        char *result = "\n you lost";
-        return *result;
+        return lose;
     }
     if(player == 's' &&  computer == 'p' ){
-        char *result = "\n you won";
-        return *result;
+        return win;
     }
     if(player == 's' &&  computer == 'r' ){
-        char *result = "\n you lost";
-        return *result;
+        return lose;
     }
     if(player == 'p' &&  computer == 'r' ){
-        char *result = "\n you won";
-        return *result;
+        return win;
     }
     if(player == 'p' &&  computer == 's' ){
-        char *result = "\n you lost";
-        return *result;
+        return lose;
     }
     if(player == computer ){
-        char *result = "\n game draw";
-        return *result;
+        char tie = 't';
+        return tie;
     }
 }
 
 int main(void){
-    char computer;
-    printf("hello world \n");
-    char player ;
+    char computer, player;
+    //get user's choice
     printf("enter r for rock, p for paper of s for scissors \n");
     scanf("%s", &player);
+
+    //computer's choice using random
     int computerNumber ;
     computerNumber = rand() % 100;
     if (computerNumber < 33){
@@ -56,8 +55,22 @@ int main(void){
         computer = 's';
     }
 
+    //storing function result in variable
+    char result = r_p_c(player, computer);
 
-    printf(r_p_c(player, computer));
+    printf("computer : %c \n", computer );
+
+    if (result == 'l'){
+        printf("you have lost");
+    }
+    else if (result == 'w')
+    {
+       printf("you have won");
+    }
+    else{
+        printf("it's a tie");
+    }
+    
     return 0;
 }
 
